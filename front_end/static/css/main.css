@@ -1,0 +1,368 @@
+/**
+ * @file
+ * Main stylesheet file.
+ */
+
+/*****************************************************************************
+ * Main elements
+ ****************************************************************************/
+
+html {
+  overflow-y: scroll;
+}
+
+section {
+  margin: 50px 0;
+}
+
+section>h2 {
+  margin-bottom: 20px;
+}
+
+a {
+  cursor: pointer;
+  color: #ff8c3a;
+}
+
+.navbar-default .navbar-nav>.active>a, .navbar-default .navbar-nav>.active>a:hover, .navbar-default .navbar-nav>.active>a:focus {
+  background: initial;
+  color: initial;
+}
+
+p.lead {
+  margin-top: 30px;
+}
+
+::selection {
+  background: #555;
+  color: #FFF;
+}
+
+::-moz-selection {
+  background: #555;
+  color: #FFF;
+}
+
+::-webkit-selection {
+  background: #555;
+  color: #FFF;
+}
+
+/* Main elements end */
+
+/*****************************************************************************
+ * Various other styles
+ ****************************************************************************/
+
+/* Various other styles end */
+
+#front-splash {
+  width: 100%;
+}
+
+.navbar.navbar-fixed-top {
+  background: none;
+  box-shadow: none;
+  border-bottom: none;
+  padding-top: 10px;
+  background-color: white;
+}
+
+.navbar-nav .search {
+  margin-top: 6px;
+  width: 300px;
+  margin-right: 15px;
+}
+
+.navbar-default .navbar-nav>.open>a, .navbar-default .navbar-nav>.active>a {
+  background: none;
+  box-shadow: none;
+  color: black;
+  font-weight: bold;
+}
+
+.navbar-nav .search input {
+  border-radius: 50px;
+  background: #f2f2f2;
+  border: none;
+  box-shadow: none;
+  padding-left: 18px;
+  padding-right: 18px;
+  font-size: 1.4rem;
+}
+
+.btn-default {
+  border: none;
+  background-color: #dde2e7;
+  background-image: linear-gradient(#dde2e7, #dde2e7);
+  color: #444;
+}
+
+#content h3 {
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+#content h3 button {
+  margin-right: 10px;
+}
+
+ul.items {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+ul.items>li>a {
+  margin-bottom: 15px;
+  display: flex;
+  color: initial;
+  text-decoration: initial;
+}
+
+ul.items>li>a>i {
+  padding: 7px 10px 0;
+}
+
+ul.items>li:hover {
+  color: orange;
+  cursor: pointer;
+}
+
+ul.items>li:hover h5 {
+  color: orange;
+}
+
+.item {
+  padding: 5px 5px 5px;
+  flex: 1;
+}
+
+.item h5 {
+  margin-top: 0;
+  margin-bottom: 5px;
+}
+
+img {
+  max-width: 100%;
+  max-height: 500px;
+}
+
+p {
+  margin: 5px 0;
+}
+
+p>i {
+  width: 30px;
+  text-align: center;
+}
+
+.not-seeking {
+  opacity: 0.6;
+}
+
+.seeking {
+  display: inline-block;
+  padding: 20px 30px;
+  margin-top: 30px;
+  border-radius: 15px;
+  font-weight: bold;
+  background: #ffffc6;
+}
+
+.seeking>button {
+  margin-left: 15px;
+}
+
+.description {
+  max-width: 450px;
+}
+
+.genres {
+  margin-bottom: 15px;
+}
+
+span.genre {
+  display: inline-block;
+  font-family: monospace;
+  padding: 4px 8px;
+  background: #f0f0f0;
+  margin: 0 5px 5px 0;
+  border-radius: 3px;
+  color: #676767;
+  font-size: 0.9em;
+  text-transform: uppercase;
+  border: solid 1px #eee;
+}
+
+.monospace {
+  font-family: monospace;
+  text-transform: uppercase;
+}
+
+h1.monospace {
+  font-size: 2.5rem;
+}
+
+h2.monospace {
+  font-size: 2.25rem;
+  opacity: 0.7;
+  font-weight: bold;
+  color: black;
+}
+
+.shows .tile-show {
+  height: 350px;
+}
+
+.tile {
+  text-align: center;
+  padding: 15px 25px;
+  border: solid 1px #ebebeb;
+  height: 325px;
+  margin-bottom: 15px;
+}
+
+.tile img {
+  max-height: 200px;
+}
+
+.form-wrapper {
+  max-width: 400px;
+}
+
+.form-inline {
+  font-size: 0;
+}
+
+.form-inline .form-group {
+  width: 50%;
+}
+
+.form-inline .form-control {
+  width: 100%;
+}
+
+.subtitle {
+  opacity: 0.5;
+}
+
+
+/*Start of my custom CSS tags*/
+
+.required_fields {
+  color: red;
+  font-size: 15px;
+}
+
+
+/*
+  CSS rule for the website and Facebook link input text-boxes
+  Even though the two fields are optional, at least one must be filled in
+*/
+
+.atleast_one {
+  color: blue;
+  /*font-size: 15px;*/
+}
+
+
+/*For invalid input fields*/
+
+input:hover:invalid, select:hover:invalid, input:focus:invalid, select:focus:invalid, input:not(:required):hover:invalid, input:not(:required):focus:invalid {
+  border: 2px solid red;
+}
+
+/*Venue Deletion Styling*/
+
+#deleteVenueButton {
+  margin-top: 15px;
+  color: white;
+  background-color: #f44336;
+  background-image: none;
+}
+
+#deleteVenueYes {
+  color: white;
+  background-color: #f44336;
+  background-image: none;
+}
+
+
+/*Recently Created Artist and Venue CSS Rules*/
+
+/*
+  Default Recently Created Rules
+  Regardless of screen size
+*/
+
+h3.recent_headers{
+  font-weight: bold;
+}
+
+.recently_created:before, .recently_created:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+
+#recent_artists {
+  float: left;
+}
+
+#recent_venues{
+  float: left;
+  margin-right: 30px;
+}
+
+div.recently_created {
+  font-weight: bold;
+  float: left;
+  overflow-x: hidden;
+}
+
+
+/*
+  Media tags that modify the "Recently Created Venues" column/div based on screen width
+*/
+
+@media (min-width: 1064px){
+  #recent_venues {
+    margin-left: 30%;
+  }
+}
+
+@media (min-width: 876px) and (max-width: 1063px){
+  #recent_venues {
+    margin-left: 15%;
+  }
+}
+
+@media (min-width:784px) and (max-width: 875px){
+  #recent_venues {
+    margin-left: 5%;
+  }
+}
+
+@media(max-width: 783px){
+  #recent_venues{
+    clear: both;
+  }
+}
+
+/*Media tag that sets the width of the "Recently Created" div for larger screens*/
+@media(min-width: 784px){
+  div.recently_created {
+    width: 100vw;
+  }
+}
+
+
+
+
+
+
+
+
+

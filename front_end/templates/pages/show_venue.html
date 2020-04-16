@@ -1,0 +1,141 @@
+{% extends 'layouts/main.html' %}
+{% block title %}Venue Search{% endblock %}
+{% block content %}
+
+<div class="row">
+	<div class="col-sm-6">
+		<h1 class="monospace">
+			{{ venue.name }}
+		</h1>
+		<p class="subtitle">
+			<span>ID: {{venue.id}} </span>
+			<p>
+			<a href="/venues/{{venue.id}}/edit"><input type="submit" value="Edit Venue" class="btn btn-primary btn-lg" id="editVenueLink"></a><br />
+			<!--<input type="submit" value="Delete Venue" class="fas fa-edit" formaction="{{ url_for('delete_venue', venue_id=venue.id) }}"><br />-->
+			<!--<input type="submit" value="Delete Venue" class="btn btn-primary btn-lg btn-block" formaction="{{ url_for('delete_venue', venue_id=venue.id) }}">-->
+			<input type="submit" value="Delete Venue" class="btn btn-default btn-lg" data-toggle="modal" data-target="#confirmDeleteVenue" id="deleteVenueButton"></a><br />
+			<br /></p>
+		</p>
+		<br />
+		
+		<div class="alert alert-info alert-dismissible" role="alert" id="successfulDeletionMsg" style="display: none;">
+			<span type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></span>
+			<p>The venue has been deleted successfully!</p>
+		</div>
+		
+		<div class="genres">
+			{% for genre in venue.genres %}
+			<span class="genre">{{ genre }}</span>
+			{% endfor %}
+		</div>
+		<p>
+			<i class="fas fa-globe-americas"></i> {{ venue.city }}, {{ venue.state }}
+		</p>
+		<p>
+			<i class="fas fa-map-marker"></i> {% if venue.address %}{{ venue.address }}{% else %}No Address{% endif %}
+		</p>
+		<p>
+			<i class="fas fa-phone-alt"></i> {% if venue.phone %}{{ venue.phone }}{% else %}No Phone{% endif %}
+		</p>
+		<p>
+			<i class="fas fa-link"></i> {% if venue.website_link %}<a href="{{ venue.website_link }}" target="_blank">{{ venue.website_link }}</a>{% else %}No website_link{% endif %}
+		</p>
+		<p>
+			<i class="fab fa-facebook-f"></i> {% if venue.facebook_link %}<a href="{{ venue.facebook_link }}" target="_blank">{{ venue.facebook_link }}</a>{% else %}No Facebook Link{% endif %}
+		</p>
+		{% if venue.seeking_talent %}
+		<div class="seeking">
+			<p class="lead">Currently seeking talent</p>
+			<div class="description">
+				{% if venue.seeking_description %}<i class="fas fa-quote-left"></i> {{ venue.seeking_description }} <i class="fas fa-quote-right"></i>{% else %}{% endif %}
+			</div>
+		</div>
+		{% else %}	
+		<p class="not-seeking">
+			<i class="fas fa-moon"></i> Not currently seeking talent
+		</p>
+		{% endif %}
+	</div>
+	<div class="col-sm-6">
+		<img src="{{ venue.image_link }}" alt="Venue Image" />
+	</div>
+</div>
+<section>
+	<h2 class="monospace">{{ venue.upcoming_shows_count }} Upcoming {% if venue.upcoming_shows_count == 1 %}Show{% else %}Shows{% endif %}</h2>
+	<div class="row">
+		{%for show in venue.upcoming_shows %}
+		<div class="col-sm-4">
+			<div class="tile tile-show">
+				<img src="{{ show.artist_image_link }}" alt="Show Artist Image" />
+				<h5><a href="/artists/{{ show.artist_id }}">{{ show.artist_name }}</a></h5>
+				<h6>{{ show.start_time|datetime('full') }}</h6>
+			</div>
+		</div>
+		{% endfor %}
+	</div>
+</section>
+<section>
+	<h2 class="monospace">{{ venue.past_shows_count }} Past {% if venue.past_shows_count == 1 %}Show{% else %}Shows{% endif %}</h2>
+	<div class="row">
+		{%for show in venue.past_shows %}
+		<div class="col-sm-4">
+			<div class="tile tile-show">
+				<img src="{{ show.artist_image_link }}" alt="Show Artist Image" />
+				<h5><a href="/artists/{{ show.artist_id }}">{{ show.artist_name }}</a></h5>
+				<h6>{{ show.start_time|datetime('full') }}</h6>
+			</div>
+		</div>
+		{% endfor %}
+	</div>
+</section>
+
+
+
+<!--Delete Venue Modal-->
+<div class="modal fade" id="confirmDeleteVenue" role="dialog" data-backdrop="static">
+	<div class="modal-dialog">
+	
+	<div class="modal-content">
+		<div class="modal-header">
+		<button type="button" class="close" data-dismiss="modal">&times;</button>
+		<h4 class="modal-title">Confirm Venue Deletion</h4>
+		</div>
+		<div class="modal-body">
+		<p>Are you sure you want to delete the venue?</p>
+		</div>
+		<div class="modal-footer">
+		<!--<input type="submit" class="btn btn-default" name="submit" value="Yes">-->
+		<!--<input type="submit" class="btn btn-default btn-sm" value="Yes" formaction="{{ url_for('delete_venue', venue_id=venue.id) }}">-->
+		<button id = "deleteVenueYes" class="btn btn-default" data-toggle="modal" data-target="#successfulDeletionModal" data-dismiss="modal"> Yes</button>
+		<button type= "button" class="btn btn-default" data-dismiss="modal">No</button>
+		</div>
+	</div>
+	
+	</div>
+</div>
+<!--End of Delete Venue Modal-->
+
+
+<!--Successful Deletion Modal-->
+<div class="modal fade" id="successfulDeletionModal" role="dialog" data-backdrop="static">
+	<div class="modal-dialog">
+	
+	<div class="modal-content">
+		<div class="modal-header">
+		<button data-id = "{{venue.id}}" class="close venueRedirect">&times;</button>
+		<h4 class="modal-title">The venue will be deleted! <br /><br />
+			To finalize the deletion and return to the Venues page, click on one of the following: <br /><br />
+			<b>"x"</b> at the top-right corner of the modal <br /><br />
+			<a class = "venueRedirect" data-id = "{{venue.id}}">Venues</a>
+			<button data-id = "{{venue.id}}" class="close"></button>
+		</h4>
+		</div>
+	</div>
+	
+	</div>
+</div>
+<!--End of Successful Deletion Modal-->
+
+  
+{% endblock %}
+

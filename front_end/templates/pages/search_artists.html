@@ -1,0 +1,24 @@
+{% extends 'layouts/main.html' %}
+{% block title %}Fyyur | Artists Search{% endblock %}
+{% block content %}
+
+<h3> 
+	{% if results.count == 0 %} No results for "{{search_term}}" 
+	{% elif not search_term %}
+	{% elif results.count == 1 %}<b>{{results.count}}</b> result for "{{search_term}}"
+	{% else %}<b>{{results.count}}</b> results for "{{search_term}}"{% endif %}
+</h3>
+
+<ul class="items">
+	{% for artist in results.data %}
+	<li>
+		<a href="/artists/{{ artist.id }}">
+			<i class="fas fa-users"></i>
+			<div class="item">
+				<h5>{{ artist.name }}</h5>
+			</div>
+		</a>
+	</li>
+	{% endfor %}
+</ul>
+{% endblock %}

@@ -1,0 +1,33 @@
+{% extends 'layouts/main.html' %}
+{% block title %}New Show Listing{% endblock %}
+{% block content %}
+  <div class="form-wrapper">
+    <form method="post" class="form">
+      {{ form.csrf_token }}
+      
+      <h3 class="form-heading">List a new show</h3>
+      
+      <!--Legend for required fields-->
+      <p>All fields are <span class = "required_fields">required</span></p><br>
+      
+      <!--Start of the form fields-->
+      <div class="form-group">
+        <label for="artist_id">Artist Name</label>
+        <br /><small>Acceptable formats: <i><b>ArtistName, Artist Name</b> (2-3 words), <b>Artist-Name</b></i></small>
+        {{ form.artist_name(class_ = 'form-control', autofocus = true, pattern="[A-Za-z]+\s{0,1}(?:(?:-?)[A-Za-z]+\s{0,1}(?:[A-Za-z]+\s{0,1}?))?") }}
+      </div>
+      <div class="form-group">
+        <label for="venue_id">Venue Name</label>
+        <br><small>Acceptable formats for Venue Name: See <b> Artist Name</b></small>
+        {{ form.venue_name(class_ = 'form-control', autofocus = true, pattern="[A-Za-z]+\s{0,1}(?:(?:-?)[A-Za-z]+\s{0,1}(?:[A-Za-z]+\s{0,1}?))?") }}
+      </div>
+      <div class="form-group">
+          <label for="start_time">Start Time</label>
+          <small>Format: YYYY-MM-DD HH:MM.<br />Ending with capitalized AM or PM.</small>
+          {{ form.start_time(class_ = 'form-control', placeholder='YYYY-MM-DD HH:MM AM/PM', autofocus = true, pattern="[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1]) (2[0-3]|[01][0-9]):[0-5][0-9] (AM|PM)") }}
+      </div>
+      
+      <input readonly type="submit" value="Create Show" class="btn btn-primary btn-lg btn-block">
+    </form>
+  </div>
+{% endblock %}

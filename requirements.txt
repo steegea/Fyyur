@@ -1,0 +1,12 @@
+babel
+python-dateutil
+logging
+flask
+flask-moment
+flask-wtf
+Jinja2
+MarkupSafe
+SQLAlchemy
+WTForms
+
+

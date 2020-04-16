@@ -1,0 +1,100 @@
+{% extends 'layouts/main.html' %}
+
+{% block title %}Edit Artist{% endblock %}
+{% block content %}
+  <div class="form-wrapper">
+    <form class="form" method="post" action="/artists/{{artist.id}}/edit">
+      {{ form.csrf_token }}
+      <h3 class="form-heading">Edit Artist: <b>{{ artist.name }}</b> <a href="{{ url_for('index') }}" title="Back to homepage"><i class="fa fa-home pull-right"></i></a></h3>
+      
+      <!--Legend for required fields and special-case optional fields like website and Facebook link-->
+      <p><span class = "required_fields">*</span> = Required Fields</p><br>
+      <p>Fields marked with <span class = "atleast_one">#</span> are optional fields. However, at least one of which must be provided.</p><br>
+
+      <!--Start of the form fields-->
+      <div class="form-group">
+        <label for="name">Name</label><span class = "required_fields"> *</span>
+        <br /><small>Acceptable formats: <i><b>ArtistName, Artist Name</b> (2-3 words), <b>Artist-Name</b></i></small>
+        {{ form.name(class_ = 'form-control', autofocus = true, pattern="[A-Za-z]+\s{0,1}(?:(?:-?)[A-Za-z]+\s{0,1}(?:[A-Za-z]+\s{0,1}?))?" ) }}
+      </div>
+
+      <div class="form-group">
+          <label>City & State</label><span class = "required_fields"> *</span>
+          <br><small>Acceptable formats for City: See <b>Name</b></small>
+          <div class="form-inline">
+            <div class="form-group">
+              {{ form.city(class_ = 'form-control', placeholder='City', autofocus = true, pattern="[A-Za-z]+\s{0,1}(?:(?:-?)[A-Za-z]+\s{0,1}(?:[A-Za-z]+\s{0,1}?))?" ) }}
+            </div>
+            <div class="form-group">
+              {{ form.state(class_ = 'form-control', placeholder='State', autofocus = true) }}
+            </div>
+          </div>
+      </div>
+
+      <div class="form-group">
+          <label for="phone">Phone</label><span class = "required_fields"> *</span>
+          {{ form.phone(class_ = 'form-control', placeholder='xxx-xxx-xxxx', autofocus = true, pattern="(?:[0-9]+-)?[0-9]{3}-[0-9]{3}-[0-9]{4}") }}
+      </div>
+
+      <div class="form-group">
+        <label for="genres">Genres</label><span class = "required_fields"> *</span>
+        <small>Ctrl+Click to select multiple genres (Up to 5)</small>
+        {{ form.genres(class_ = 'form-control', placeholder='Genres, separated by commas', id=form.genres, autofocus = true) }}
+      </div>
+
+      <div class="form-group">
+        <label for="image_link">Image Link</label><span class = "required_fields"> *</span>
+        {{ form.image_link(class_ = 'form-control', placeholder='http[s]://', autofocus = true, pattern = "http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]|[!*\(\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+") }}
+      </div>
+
+      <div class="form-group">
+        <label for="website_link">Website</label><span class = "atleast_one"> #</span>
+        {{ form.website_link(class_ = 'form-control', placeholder='http[s]://', id=form.state, autofocus = true, pattern = "http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]|[!*\(\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+") }}
+      </div>
+
+      <div class="form-group">
+          <label for="facebook_link">Facebook Link</label><span class = "atleast_one"> #</span>
+          {{ form.facebook_link(class_ = 'form-control', placeholder='http[s]://', id=form.state, autofocus = true, pattern = "http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]|[!*\(\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+") }}
+      </div>
+
+
+      <div class="form-group">
+        <label for="seeking_venues">Are you currently seeking venues?</label>
+        {{ form.seeking_venues(class_ = 'form-control', placeholder='Select one', id=form.state, autofocus = true) }}
+      </div>
+
+      <div class="form-group">
+        <label for="seeking_description">Description</label>
+        {{ form.seeking_description(class_ = 'form-control', placeholder='', autofocus = true) }}
+      </div>
+
+      <!--Button that brings up the "Edit Artist" modal when clicked on-->
+      <button type="button" class="btn btn-primary btn-lg btn-block" data-toggle="modal" data-target="#confirmEditArtist">Edit Artist</button>
+
+      <!--Edit Artist Modal-->
+      <div class="modal fade" id="confirmEditArtist" role="dialog">
+        <div class="modal-dialog">
+          
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4 class="modal-title">Confirm Artist Update</h4>
+            </div>
+            <div class="modal-body">
+              <p>Are you sure you want to save your changes?</p>
+            </div>
+            <div class="modal-footer">
+              <input type="submit" class="btn btn-default" name="submit" value="Yes">
+              <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+      <!--End of Edit Artist Modal-->
+
+      
+    </form>
+  </div>
+
+{% endblock %}
