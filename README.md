@@ -67,7 +67,6 @@ To start and run your local server, you can create one of the following:
   or 
   
  #### Pipenv
-  Alternatively, you can create an **Pipenv** by doing the following:
   ```
   $ cd Your_Project_Directory
   $ pipenv install
