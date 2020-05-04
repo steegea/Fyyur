@@ -55,13 +55,23 @@ Fyyur is a musical venue and artist booking site that facilitates the discovery 
 
 ### Development Setup
 
-To start and run the local development server,
+To start and run your local server, you can create one of the following:
 
-1. Initialize and activate a virtualenv:
+#### Virtualenv
   ```
-  $ cd YOUR_PROJECT_DIRECTORY_PATH/
+  $ cd Your_Project_Directory
   $ virtualenv --no-site-packages env
   $ source env/bin/activate
+  ```
+  
+  or 
+  
+ #### Pipenv
+  Alternatively, you can create an **Pipenv** by doing the following:
+  ```
+  $ cd Your_Project_Directory
+  $ pipenv install
+  $ pipenv shell  (Activates the Pipenv)
   ```
 
 2. Install the dependencies:
@@ -73,7 +83,7 @@ To start and run the local development server,
   ```
   $ export FLASK_APP=myapp
   $ export FLASK_ENV=development # enables debug mode
-  $ python3 app.py
+  $ python3 run.py (or python run.py for Windows users)
   ```
 
 4. Navigate to Home page [http://localhost:5000](http://localhost:5000)
